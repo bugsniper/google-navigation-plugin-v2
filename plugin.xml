@@ -2,18 +2,17 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="uk.co.workingedge.phonegap.plugin.launchnavigator"
-    version="5.0.6">
+    id="com.george.cordova.plugin.googlenavigator"
+    version="0.0.1">
 
-  <name>Launch Navigator</name>
+  <name>Google Navigation V2</name>
   <description>Cordova/Phonegap plugin to navigate to a destination using native navigation apps on Android, iOS, and Windows</description>
-  <author>Dave Alden</author>
+  <author>Goerge Teodor</author>
 
-  <repo>https://github.com/dpa99c/phonegap-launch-navigator.git</repo>
-  <issue>https://github.com/dpa99c/phonegap-launch-navigator/issues</issue>
+  <repo>https://github.com/georgeteodor98/google-navigation-plugin-v2.git</repo>
 
   <license>MIT</license>
-  <keywords>cordova,phonegap,ios,android,windows,navigation,navigator</keywords>
+  <keywords>cordova,capacitor,ios,android,windows,navigation,navigator</keywords>
 
   <js-module src="www/common.js" name="Common">
     <clobbers target="launchnavigator" />
@@ -41,17 +40,17 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="LaunchNavigator">
-        <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchNavigatorPlugin"/>
+        <param name="android-package" value="com.george.cordova.plugin.LaunchNavigatorPlugin"/>
       </feature>
     </config-file>
 
     <!-- Cordova wrapper -->
-    <source-file src="src/android/LaunchNavigatorPlugin.java" target-dir="src/uk/co/workingedge/phonegap/plugin" />
-    <source-file src="src/android/CordovaLogger.java" target-dir="src/uk/co/workingedge/phonegap/plugin" />
+    <source-file src="src/android/LaunchNavigatorPlugin.java" target-dir="src/com/george/cordova/plugin" />
+    <source-file src="src/android/CordovaLogger.java" target-dir="src/com/george/cordova/plugin" />
 
     <!-- LaunchNavigator lib -->
-    <source-file src="src/android/lib/LaunchNavigator.java" target-dir="src/uk/co/workingedge" />
-    <source-file src="src/android/lib/ILogger.java" target-dir="src/uk/co/workingedge" />
+    <source-file src="src/android/lib/LaunchNavigator.java" target-dir="src/com/george" />
+    <source-file src="src/android/lib/ILogger.java" target-dir="src/com/george" />
 
     <config-file target="AndroidManifest.xml" parent="/*">
       <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -66,74 +65,4 @@
     <preference name="OKHTTP_VERSION" default="3.12.0" />
     <framework src="com.squareup.okhttp3:okhttp:$OKHTTP_VERSION" />
   </platform>
-
-  <!-- ios -->
-  <platform name="ios">
-    <dependency id="cordova-plugin-actionsheet" version="2" />
-    <dependency id="cordova-plugin-dialogs" version="*" />
-
-    <js-module src="www/ios/launchnavigator.js" name="LaunchNavigator">
-      <merges target="launchnavigator" />
-    </js-module>
-
-    <config-file target="config.xml" parent="/*">
-      <feature name="LaunchNavigator">
-        <param name="ios-package" value="LaunchNavigatorPlugin"/>
-      </feature>
-    </config-file>
-    
-    <!-- Cordova wrapper -->
-    <header-file src="src/ios/LaunchNavigatorPlugin.h" />
-    <source-file src="src/ios/LaunchNavigatorPlugin.m" />
-    <header-file src="src/ios/WE_CordovaLogger.h" />
-    <source-file src="src/ios/WE_CordovaLogger.m" />
-
-    <!-- LaunchNavigator lib -->
-    <header-file src="src/ios/lib/LN_LaunchNavigator.h" />
-    <source-file src="src/ios/lib/LN_LaunchNavigator.m" />
-    <header-file src="src/ios/lib/LN_Reachability.h" />
-    <source-file src="src/ios/lib/LN_Reachability.m" />
-    <header-file src="src/ios/lib/WE_Logger.h" />
-    <source-file src="src/ios/lib/WE_Logger.m" />
-
-    <framework src="MapKit.framework" />
-    <framework src="CoreLocation.framework" />
-    <framework src="SystemConfiguration.framework" />
-
-    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
-      <array>
-        <string>citymapper</string>
-        <string>comgooglemaps</string>
-        <string>navigon</string>
-        <string>transit</string>
-        <string>waze</string>
-        <string>yandexnavi</string>
-        <string>uber</string>
-        <string>tomtomhome</string>
-        <string>com.sygic.aura</string>
-        <string>here-route</string>
-        <string>moovit</string>
-        <string>lyft</string>
-        <string>mapsme</string>
-        <string>cabify</string>
-        <string>baidumap</string>
-        <string>taxis99</string>
-        <string>iosamap</string>
-      </array>
-    </config-file>
-
-    <preference name="LOCATION_USAGE_DESCRIPTION" default="This app requires access to your location for navigation purposes" />
-    <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
-      <string>$LOCATION_USAGE_DESCRIPTION</string>
-    </config-file>
-
-  </platform>
-
-  <!-- windows -->
-  <platform name="windows">
-    <js-module src="www/windows/launchnavigator.js" name="LaunchNavigator">
-      <merges target="launchnavigator" />
-    </js-module>     
-  </platform>
-
 </plugin>
